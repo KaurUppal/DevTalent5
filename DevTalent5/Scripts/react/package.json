@@ -1,0 +1,31 @@
+{
+  "name": "onboarding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amandeep",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-tag-input": "^6.3.0",
+    "semantic-ui-react": "^0.85.0",
+    "webpack": "^4.5.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "react-bootstrap": "^1.0.0-beta.5",
+    "webpack-cli": "^3.2.3"
+  }
+}
