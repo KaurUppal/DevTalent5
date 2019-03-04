@@ -7,9 +7,11 @@
     //    filename: "bundle.js"
     //},
     entry: {
-        app: "./customer/app.js",
+        appStore: "./store/appStore.js",
+        appProduct: "./product/appProduct.js",
+        app: "./customer/app.js"
         //customer: "./customer/customer.js",
-       product: "./product.js"
+       
     },
     output: {
         path: __dirname + "/dist",

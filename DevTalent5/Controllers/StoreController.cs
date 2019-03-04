@@ -7,48 +7,41 @@ using DevTalent5.Models;
 
 namespace DevTalent5.Controllers
 {
-    public class ProductController : Controller
+    public class StoreController : Controller
     {
         TalentDevEntities db = new TalentDevEntities();
-        
-        // GET: Product
-        public ActionResult Index()
+        // GET: Store
+        public ActionResult Stores()
         {
             return View();
         }
 
-        // GET: Product
-        public ActionResult Products()
+        // GET: Store
+        public ActionResult GetStoreList()
         {
-            return View();
-        }
-
-        public ActionResult GetProductList()
-        {
-            var model = db.Products.ToList();
-            var products = model.Select(x => new Product
+            var model = db.Stores.ToList();
+            var stores = model.Select(x => new Store
             {
                 Id = x.Id,
                 Name = x.Name,
-                Price = x.Price
+                Address = x.Address
             });
-            return Json(products, JsonRequestBehavior.AllowGet);
+            return Json(stores, JsonRequestBehavior.AllowGet);
         }
 
-
-        // GET: Product/Details/5
+        // GET: Store/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Product/Create
+        // GET: Store/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Product/Create
+        // POST: Store/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -64,13 +57,13 @@ namespace DevTalent5.Controllers
             }
         }
 
-        // GET: Product/Edit/5
+        // GET: Store/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Product/Edit/5
+        // POST: Store/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -86,13 +79,13 @@ namespace DevTalent5.Controllers
             }
         }
 
-        // GET: Product/Delete/5
+        // GET: Store/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Product/Delete/5
+        // POST: Store/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

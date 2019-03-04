@@ -127,12 +127,18 @@
     <Content Include="Scripts\react\customer\app.js" />
     <Content Include="Scripts\react\customer\customer.js" />
     <Content Include="Scripts\react\customer\customerTable.js" />
+    <Content Include="Scripts\react\dist\appProduct_bundle.js" />
+    <Content Include="Scripts\react\dist\appStore_bundle.js" />
     <Content Include="Scripts\react\dist\app_bundle.js" />
-    <Content Include="Scripts\react\dist\customer_bundle.js" />
     <Content Include="Scripts\react\product.js" />
+    <Content Include="Scripts\react\product\appProduct.js" />
+    <Content Include="Scripts\react\product\product.js" />
+    <Content Include="Scripts\react\product\productTable.js" />
+    <Content Include="Scripts\react\store\appStore.js" />
+    <Content Include="Scripts\react\store\store.js" />
+    <Content Include="Scripts\react\store\storeTable.js" />
     <Content Include="Scripts\react\webpack.config.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\Home\Product_List.cshtml" />
     <Content Include="Views\Customer\Customers.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +146,9 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -183,6 +192,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\Store\Stores.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -192,7 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Product\" />
+    <Folder Include="Views\Sales\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

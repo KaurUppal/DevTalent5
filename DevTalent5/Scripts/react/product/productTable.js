@@ -4,36 +4,35 @@ import Table from 'react-bootstrap/Table'
 import TableBody from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
-class CustomersData extends React.Component {
+class ProductsData extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
 
         };
 
-       
+
 
     };
 
 
     render() {
-        const customer = this.props.customer;
+        const product = this.props.product;
         return (
-            
+
             <tr>
-                <td>{customer.Name}</td>
-                <td>{customer.Address}</td>
-                <td><Button variant="danger" name="delete" customer={customer} onClick={() => this.props.deleteSelectCustomer(customer)} >Delete</Button></td>
-                 <td><Button name="edit" customer={customer} onClick={() => this.props.selectCustomer(customer)}>Edit</Button></td>
-                    
-                </tr>
+                <td>{product.Name}</td>
+                <td>{product.Price}</td>
+                <td><Button variant="danger" name="delete" product={product} >Delete</Button></td>
+                <td><Button name="edit" product={product }>Edit</Button></td>
+            </tr>
 
         );
 
     }
 }
 
-export default class CustomersDataTable extends React.Component {
+export default class ProductsDataTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,11 +40,8 @@ export default class CustomersDataTable extends React.Component {
 
     };
 
-
-
-
     render() {
-        const customerData = this.props.customerData;
+        const productData = this.props.productData;
         return (
 
             <Table>
@@ -59,11 +55,11 @@ export default class CustomersDataTable extends React.Component {
                 </thead>
                 <tbody>
                     {
-                        customerData.map(customer =>
-                            (<CustomersData key={customer.Id} customer={customer} deleteSelectCustomer={this.props.deleteSelectCustomer} />))
+                        productData.map(product =>
+                            (<ProductsData key={product.Id} product={product}/>))
                     }
                 </tbody>
-                
+
             </Table>
 
         );
