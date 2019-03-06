@@ -10,10 +10,7 @@ class ProductsData extends React.Component {
         this.state = {
 
         };
-
-
-
-    };
+   };
 
 
     render() {

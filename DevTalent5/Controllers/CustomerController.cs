@@ -37,9 +37,21 @@ namespace DevTalent5.Controllers
         }
 
         // GET: Customer/Create
-        public ActionResult Create()
+        public ActionResult Create(Customer model)
         {
-            return View();
+            Customer customer = new Customer();
+            customer.Name = model.Name;
+            customer.Address = model.Address;
+            try
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { Response = "Unsuccess" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // POST: Customer/Create
@@ -84,9 +96,19 @@ namespace DevTalent5.Controllers
         public ActionResult DeleteCustomer(int id)
         {
             var customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
-            return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
+            try
+            {
+                db.Customers.Remove(customer);
+                db.Entry(customer);
+                db.SaveChanges();
+                return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { Response = "UnSuccess" }, JsonRequestBehavior.AllowGet);
+
+            }
+            
         }
 
         // POST: Customer/Delete/5

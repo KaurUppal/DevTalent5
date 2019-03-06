@@ -9,10 +9,7 @@ class CustomersData extends React.Component {
         super(props);
         this.state = {
 
-        };
-
-       
-
+        };    
     };
 
 
@@ -40,9 +37,6 @@ export default class CustomersDataTable extends React.Component {
         };
 
     };
-
-
-
 
     render() {
         const customerData = this.props.customerData;

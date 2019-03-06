@@ -23,7 +23,7 @@ export default class Product extends React.Component {
         })
     }
 
-    //deleteSelectCustomer(customer) {
+    //deleteSelectProduct(customer) {
     //    $.ajax({
     //        type: 'POST',
     //        url: '/Customer/DeleteCustomer/' + customer.Id,

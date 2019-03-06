@@ -127,13 +127,18 @@
     <Content Include="Scripts\react\customer\app.js" />
     <Content Include="Scripts\react\customer\customer.js" />
     <Content Include="Scripts\react\customer\customerTable.js" />
+    <Content Include="Scripts\react\customer\customerModal.js" />
     <Content Include="Scripts\react\dist\appProduct_bundle.js" />
+    <Content Include="Scripts\react\dist\appSale_bundle.js" />
     <Content Include="Scripts\react\dist\appStore_bundle.js" />
     <Content Include="Scripts\react\dist\app_bundle.js" />
     <Content Include="Scripts\react\product.js" />
     <Content Include="Scripts\react\product\appProduct.js" />
     <Content Include="Scripts\react\product\product.js" />
     <Content Include="Scripts\react\product\productTable.js" />
+    <Content Include="Scripts\react\sales\appSales.js" />
+    <Content Include="Scripts\react\sales\sale.js" />
+    <Content Include="Scripts\react\sales\saleTable.js" />
     <Content Include="Scripts\react\store\appStore.js" />
     <Content Include="Scripts\react\store\store.js" />
     <Content Include="Scripts\react\store\storeTable.js" />
@@ -195,6 +200,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\Store\Stores.cshtml" />
+    <Content Include="Views\Sale\Sales.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

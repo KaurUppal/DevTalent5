@@ -1,17 +1,24 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import CustomerTable from './customerTable.js'
+import CustomerDataTable from './customerTable.js'
 import Button from 'react-bootstrap/Button';
+import CustomerModal from './customerModal.js';
+import Modal from 'react-bootstrap/Modal';
 
 export default class Customer extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            customerList: []
+            customerList: [],
+            selectedCustomer: "",
+            showModal: false,
         };
 
         this.deleteSelectCustomer = this.deleteSelectCustomer.bind(this);
+        //this.saveCustomer = this.saveCustomer.bind(this);
+        //this.closeModal = this.closeModal.bind(this);
+        //this.addNewCustomer = this.addNewCustomer.bind(this);
     };
 
     componentDidMount() {
@@ -22,6 +29,15 @@ export default class Customer extends React.Component {
 
         })
     }
+
+    addNewCustomer() {
+        this.setState({
+            selectedCustomer: { "Name": "", "Address": ""},
+            showModal: true,
+        });
+    }
+
+  
 
     deleteSelectCustomer(customer) {
         $.ajax({
@@ -41,9 +57,11 @@ export default class Customer extends React.Component {
         return (
             <div>
                 <h1>Hello world</h1>
-                <Button color='red'>Add Customer</Button>
-                <CustomerTable customerData={this.state.customerList} deleteSelectCustomer={this.props.deleteSelectCustomer}
+                <Button color='red' onClick={() => this.addNewCustomer()}>Add Customer</Button>
+                <CustomerDataTable customerData={this.state.customerList} deleteSelectCustomer={this.deleteSelectCustomer}
                     selectCustomer={this.props.selectCustomer} />
+                <CustomerModal selectCustomer={this.selectCustomer}
+                    showModal={this.state.showModal} selectedCustomer={this.state.selectedCustomer} />
             </div>
             
         );

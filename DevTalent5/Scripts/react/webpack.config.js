@@ -7,6 +7,7 @@
     //    filename: "bundle.js"
     //},
     entry: {
+        appSale: "./sales/appSales.js",
         appStore: "./store/appStore.js",
         appProduct: "./product/appProduct.js",
         app: "./customer/app.js"
