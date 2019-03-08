@@ -19,7 +19,7 @@ class StoresData extends React.Component {
             <tr>
                 <td>{store.Name}</td>
                 <td>{store.Address}</td>
-                <td><Button variant="danger" name="delete">Delete</Button></td>
+                <td><Button variant="danger" name="delete" onClick={() => this.props.deleteSelectStore(store)}>Delete</Button></td>
                 <td><Button name="edit" >Edit</Button></td>
             </tr>
 
@@ -53,7 +53,7 @@ export default class StoresDataTable extends React.Component {
                 <tbody>
                     {
                         storeData.map(store =>
-                            (<StoresData key={store.Id} store={store} />))
+                            (<StoresData key={store.Id} store={store} deleteSelectStore={this.props.deleteSelectStore}/>))
                     }
                 </tbody>
 

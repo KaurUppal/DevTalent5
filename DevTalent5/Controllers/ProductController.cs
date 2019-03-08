@@ -35,77 +35,62 @@ namespace DevTalent5.Controllers
             return Json(products, JsonRequestBehavior.AllowGet);
         }
 
-
-        // GET: Product/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Product/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Product/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+       
         // GET: Product/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Product/Edit/5
+        // POST: Product/AddNewEdit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult AddNewEdit(Product model)
         {
-            try
+            var product = db.Products.Where(x => x.Id == model.Id).FirstOrDefault();
+            if (product != null)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                product.Name = model.Name;
+                product.Price = model.Price;
+                db.SaveChanges();
+                return Json(new { Response = "Success", JsonRequestBehavior.AllowGet });
             }
-            catch
+            else
             {
-                return View();
+                Product newProduct = new Product();
+                newProduct.Name = model.Name;
+                newProduct.Price = model.Price;
+                try
+                {
+                    db.Products.Add(newProduct);
+                    db.SaveChanges();
+                    return Json(new { Response = "Success", JsonRequestBehavior.AllowGet });
+                }
+                catch
+                {
+                    return Json(new { Response = "Error", JsonRequestBehavior.AllowGet });
+                }
+                
             }
         }
 
         // GET: Product/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteProduct(int id)
         {
-            return View();
-        }
-
-        // POST: Product/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
+           var product = db.Products.Find(id);
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                db.Products.Remove(product);
+                db.Entry(product);
+                db.SaveChanges();
+                return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
             }
             catch
             {
-                return View();
+                return Json(new { Response = "UnSuccess" }, JsonRequestBehavior.AllowGet);
             }
+            
         }
+
+       
     }
 }

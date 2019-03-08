@@ -1,9 +1,10 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import CustomerDataTable from './customerTable.js'
-import Button from 'react-bootstrap/Button';
 import CustomerModal from './customerModal.js';
-import Modal from 'react-bootstrap/Modal';
+//import { Button, Header, Image, Modal, Form, Input } from 'semantic-ui-react';
+import ModalDialog from 'react-bootstrap/ModalDialog'
+import Button from 'react-bootstrap/Button';
 
 export default class Customer extends React.Component {
 
@@ -11,14 +12,17 @@ export default class Customer extends React.Component {
         super(props);
         this.state = {
             customerList: [],
-            selectedCustomer: "",
-            showModal: false,
+            selectedCustomer: {"Name" : "aman",
+                               "Address" :"" 
+            },
+            showModal: false
         };
 
         this.deleteSelectCustomer = this.deleteSelectCustomer.bind(this);
-        //this.saveCustomer = this.saveCustomer.bind(this);
-        //this.closeModal = this.closeModal.bind(this);
-        //this.addNewCustomer = this.addNewCustomer.bind(this);
+        this.saveCustomer = this.saveCustomer.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.addNewCustomer = this.addNewCustomer.bind(this);
+        this.selectCustomer = this.selectCustomer.bind(this);
     };
 
     componentDidMount() {
@@ -31,15 +35,59 @@ export default class Customer extends React.Component {
     }
 
     addNewCustomer() {
+       // debugger;
+        console.log("name is Aman");
+        console.log("Name is" + this.state.selectedCustomer.Name);
         this.setState({
-            selectedCustomer: { "Name": "", "Address": ""},
-            showModal: true,
+            showModal: true
         });
     }
 
-  
+    selectCustomer(customer) {
+        debugger;
+        //console.log(customer);
+        this.setState({
+            selectedCustomer: customer,
+            showModal: true
+        });
+    }
+
+    closeModal() {
+        //debugger;
+        this.setState({
+            showModal: false
+        });
+    }
+
+    saveCustomer(customerTobeSaved) {
+        debugger;
+        console.log(customerTobeSaved.Name);
+        if ((customerTobeSaved.Name == "") || (customerTobeSaved.Address == "")) {
+            alert("please fill the values");
+        }
+        else {
+            console.log(customerTobeSaved);
+            this.setState({
+                showModal: false
+            });
+            //data: $("form[name=UserAddForm]").serialize(),
+            $.ajax({
+                type: 'POST',
+                url: '/Customer/CreateAndEdit',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(customerTobeSaved),
+                success: function (data) {
+                    console.log("success");
+                    window.location.href = '/Customer/Customers';
+                }
+            });
+        }
+
+       
+    }
 
     deleteSelectCustomer(customer) {
+        debugger;
         $.ajax({
             type: 'POST',
             url: '/Customer/DeleteCustomer/' + customer.Id,
@@ -54,19 +102,24 @@ export default class Customer extends React.Component {
     }
 
     render() {
+        //debugger;
+        console.log(JSON.stringify(this.state.selectedCustomer) + " " + this.state.showModal);
+        let selectedCustomer = this.state.selectedCustomer;
         return (
             <div>
                 <h1>Hello world</h1>
                 <Button color='red' onClick={() => this.addNewCustomer()}>Add Customer</Button>
-                <CustomerDataTable customerData={this.state.customerList} deleteSelectCustomer={this.deleteSelectCustomer}
-                    selectCustomer={this.props.selectCustomer} />
-                <CustomerModal selectCustomer={this.selectCustomer}
-                    showModal={this.state.showModal} selectedCustomer={this.state.selectedCustomer} />
+                <CustomerDataTable customerData={this.state.customerList} selectCustomer={this.selectCustomer}
+                    deleteSelectCustomer={this.deleteSelectCustomer} />
+
+                {this.state.showModal && <CustomerModal showModal={this.state.showModal} closeModal={this.closeModal} selectedCustomer={selectedCustomer}
+                    selectCustomer={this.selectCustomer} saveCustomer={this.saveCustomer} />}
             </div>
-            
+
         );
-    }
+    };
 }
+
 
 
 

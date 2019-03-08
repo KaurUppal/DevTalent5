@@ -31,7 +31,7 @@ namespace DevTalent5.Controllers
 
 
 
-            var name = model.Select(x => new Sale
+            var sale = model.Select(x => new Sale
             {
                 Id = x.Id,
                 CustomerId = x.CustomerId,
@@ -44,14 +44,9 @@ namespace DevTalent5.Controllers
                 SName = x.Store.Name
             });
 
-            return Json(name, JsonRequestBehavior.AllowGet);
+            return Json(sale, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Sales/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Sales/Create
         public ActionResult Create()
@@ -59,64 +54,24 @@ namespace DevTalent5.Controllers
             return View();
         }
 
-        // POST: Sales/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Sales/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Sales/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: Sales/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
-        }
-
-        // POST: Sales/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
+            Sale sale = db.Sales.Find(id);
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                db.Sales.Remove(sale);
+                db.SaveChanges();
+                return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
             }
             catch
             {
-                return View();
+                return Json(new { Response = "unsuccess" }, JsonRequestBehavior.AllowGet);
             }
+
         }
+
+        
     }
 }

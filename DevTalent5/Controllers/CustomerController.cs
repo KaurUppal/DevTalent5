@@ -16,11 +16,11 @@ namespace DevTalent5.Controllers
             return View();
         }
 
-        // GET: Customer
+        // GET: CustomerList
         public ActionResult GetCustomerList()
         {
             var model = db.Customers.ToList();
-            var customers= model.Select(x => new Customer
+            var customers = model.Select(x => new Customer
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -30,65 +30,34 @@ namespace DevTalent5.Controllers
             return Json(customers, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Customer/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: Customer/Create
-        public ActionResult Create(Customer model)
+        // GET: Customer/CreateAndEdit
+        public ActionResult CreateAndEdit(Customer model)
         {
-            Customer customer = new Customer();
-            customer.Name = model.Name;
-            customer.Address = model.Address;
-            try
+            var customer = db.Customers.Where(x => x.Id == model.Id).FirstOrDefault();
+            if (customer != null)
             {
-                db.Customers.Add(customer);
+                customer.Name = model.Name;
+                customer.Address = model.Address;
                 db.SaveChanges();
                 return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
             }
-            catch
+            else
             {
-                return Json(new { Response = "Unsuccess" }, JsonRequestBehavior.AllowGet);
-            }
-        }
+                Customer newCustomer = new Customer();
+                newCustomer.Name = model.Name;
+                newCustomer.Address = model.Address;
+                try
+                {
+                    db.Customers.Add(newCustomer);
+                    db.SaveChanges();
+                    return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
 
-        // POST: Customer/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Customer/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Customer/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                }
+                catch
+                {
+                    return Json(new { Response = "Error" }, JsonRequestBehavior.AllowGet);
+                }
             }
         }
 
@@ -108,23 +77,7 @@ namespace DevTalent5.Controllers
                 return Json(new { Response = "UnSuccess" }, JsonRequestBehavior.AllowGet);
 
             }
-            
-        }
 
-        // POST: Customer/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

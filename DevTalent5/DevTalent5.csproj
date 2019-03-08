@@ -134,6 +134,7 @@
     <Content Include="Scripts\react\dist\app_bundle.js" />
     <Content Include="Scripts\react\product.js" />
     <Content Include="Scripts\react\product\appProduct.js" />
+    <Content Include="Scripts\react\product\EditModal.js" />
     <Content Include="Scripts\react\product\product.js" />
     <Content Include="Scripts\react\product\productTable.js" />
     <Content Include="Scripts\react\sales\appSales.js" />

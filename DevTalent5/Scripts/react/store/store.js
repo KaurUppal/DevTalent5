@@ -11,7 +11,7 @@ export default class Store extends React.Component {
             storeList: []
         };
 
-        //this.deleteSelectCustomer = this.deleteSelectCustomer.bind(this);
+        this.deleteSelectStore = this.deleteSelectStore.bind(this);
     };
 
     componentDidMount() {
@@ -23,26 +23,26 @@ export default class Store extends React.Component {
         })
     }
 
-    //deleteSelectCustomer(customer) {
-    //    $.ajax({
-    //        type: 'POST',
-    //        url: '/Customer/DeleteCustomer/' + customer.Id,
-    //        contentType: "application/json; charset=utf-8",
-    //        data: JSON.stringify(customer),
-    //        success: function (customer) {
-    //            console.log("success");
-    //            window.location.href = '/Customer/Customers';
-    //        }
-    //    });
+    deleteSelectStore(store) {
+        $.ajax({
+            type: 'POST',
+            url: '/Store/Delete/' + store.Id,
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(store),
+            success: function (store) {
+                console.log("success");
+                window.location.href = '/Store/Stores';
+            }
+        });
 
-    //}
+    }
 
     render() {
         return (
             <div>
                 <h1>Hello world</h1>
                 <Button color='red'>Add Store</Button>
-                <StoreTable storeData={this.state.storeList} />
+                <StoreTable storeData={this.state.storeList} deleteSelectStore={this.deleteSelectStore} />
             </div>
 
         );

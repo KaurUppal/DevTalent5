@@ -19,12 +19,26 @@ export default class Sale extends React.Component {
         });
     };
 
+    deleteSelectSale(sale) {
+        $.ajax({
+            type: 'POST',
+            url: '/Sale/Delete/' + sale.Id,
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(sale),
+            success: function (sale) {
+                console.log("success");
+                window.location.href = '/Sale/Sales';
+            }
+        })
+
+    };
+
     render() {
         return (
             <div>
 
                 <Button color='red'>Add Sale</Button>
-                <SaleTableList saleData={this.state.saleData}
+                <SaleTableList saleData={this.state.saleData} deleteSelectSale={this.deleteSelectSale}
                 />
             </div>
             );
