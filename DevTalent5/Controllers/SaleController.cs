@@ -38,10 +38,10 @@ namespace DevTalent5.Controllers
                 ProductId = x.ProductId,
                 StoreId = x.StoreId,
                 DateSold = x.DateSold,
-                FormatedDate = x.FormatedDate,
-                CName = x.Customer.Name,
-                PName = x.Product.Name,
-                SName = x.Store.Name
+                //FormatedDate = x.FormatedDate,
+                //CName = x.Customer.Name,
+                //PName = x.Product.Name,
+                //SName = x.Store.Name
             });
 
             return Json(sale, JsonRequestBehavior.AllowGet);

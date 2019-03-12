@@ -51,7 +51,7 @@ namespace DevTalent5.Controllers
                 {
                     db.Customers.Add(newCustomer);
                     db.SaveChanges();
-                    return Json(new { Response = "Success" }, JsonRequestBehavior.AllowGet);
+                    return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
 
                 }
                 catch

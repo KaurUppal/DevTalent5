@@ -21,7 +21,7 @@ class ProductsData extends React.Component {
                 <td>{product.Name}</td>
                 <td>{product.Price}</td>
                 <td><Button variant="danger" name="delete" product={product} onClick={() => this.props.deleteSelectProduct(product)} >Delete</Button></td>
-                <td><Button name="edit" product={product }>Edit</Button></td>
+                <td><Button name="edit" product={product} onClick={() => this.props.selectProduct(product)}>Edit</Button></td>
             </tr>
 
         );
@@ -53,7 +53,7 @@ export default class ProductsDataTable extends React.Component {
                 <tbody>
                     {
                         productData.map(product =>
-                            (<ProductsData key={product.Id} product={product} deleteSelectProduct={this.props.deleteSelectProduct}/>))
+                            (<ProductsData key={product.Id} product={product} deleteSelectProduct={this.props.deleteSelectProduct} selectProduct={this.props.selectProduct} />))
                     }
                 </tbody>
 

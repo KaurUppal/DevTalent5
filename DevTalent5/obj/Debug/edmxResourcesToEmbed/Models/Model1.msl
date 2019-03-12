@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TalentDevModelStoreContainer" CdmEntityContainer="TalentDevEntities">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="TalentDevEntities">
     <EntitySetMapping Name="Customers">
-      <EntityTypeMapping TypeName="TalentDevModel.Customer">
+      <EntityTypeMapping TypeName="Model1.Customer">
         <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Products">
-      <EntityTypeMapping TypeName="TalentDevModel.Product">
+      <EntityTypeMapping TypeName="Model1.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -20,7 +20,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sales">
-      <EntityTypeMapping TypeName="TalentDevModel.Sale">
+      <EntityTypeMapping TypeName="Model1.Sale">
         <MappingFragment StoreEntitySet="Sales">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Stores">
-      <EntityTypeMapping TypeName="TalentDevModel.Store">
+      <EntityTypeMapping TypeName="Model1.Store">
         <MappingFragment StoreEntitySet="Store">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />

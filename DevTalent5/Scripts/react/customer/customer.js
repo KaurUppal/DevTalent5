@@ -11,8 +11,9 @@ export default class Customer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            checkState: false,
             customerList: [],
-            selectedCustomer: {"Name" : "aman",
+            selectedCustomer: {"Name" : "",
                                "Address" :"" 
             },
             showModal: false
@@ -44,7 +45,7 @@ export default class Customer extends React.Component {
     }
 
     selectCustomer(customer) {
-        debugger;
+       // debugger;
         //console.log(customer);
         this.setState({
             selectedCustomer: customer,
@@ -60,7 +61,7 @@ export default class Customer extends React.Component {
     }
 
     saveCustomer(customerTobeSaved) {
-        debugger;
+        //debugger;
         console.log(customerTobeSaved.Name);
         if ((customerTobeSaved.Name == "") || (customerTobeSaved.Address == "")) {
             alert("please fill the values");
@@ -70,15 +71,17 @@ export default class Customer extends React.Component {
             this.setState({
                 showModal: false
             });
+            console.log(this.state.checkState );
+            debugger;
             //data: $("form[name=UserAddForm]").serialize(),
             $.ajax({
                 type: 'POST',
                 url: '/Customer/CreateAndEdit',
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(customerTobeSaved),
-                success: function (data) {
-                    console.log("success");
-                    window.location.href = '/Customer/Customers';
+                success: function (data, customerTobeSaved) {
+                    debugger;
+                   window.location.href = '/Customer/Customers';
                 }
             });
         }
@@ -87,7 +90,7 @@ export default class Customer extends React.Component {
     }
 
     deleteSelectCustomer(customer) {
-        debugger;
+        //debugger;
         $.ajax({
             type: 'POST',
             url: '/Customer/DeleteCustomer/' + customer.Id,

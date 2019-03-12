@@ -47,18 +47,20 @@ namespace DevTalent5.Controllers
         public ActionResult AddNewEdit(Product model)
         {
             var product = db.Products.Where(x => x.Id == model.Id).FirstOrDefault();
+            Double price = Convert.ToDouble(model.Price);
             if (product != null)
             {
                 product.Name = model.Name;
-                product.Price = model.Price;
+                product.Price = price;
                 db.SaveChanges();
                 return Json(new { Response = "Success", JsonRequestBehavior.AllowGet });
             }
             else
             {
+               
                 Product newProduct = new Product();
                 newProduct.Name = model.Name;
-                newProduct.Price = model.Price;
+                newProduct.Price = price;
                 try
                 {
                     db.Products.Add(newProduct);

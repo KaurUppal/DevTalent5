@@ -53,7 +53,7 @@ export default class StoresDataTable extends React.Component {
                 <tbody>
                     {
                         storeData.map(store =>
-                            (<StoresData key={store.Id} store={store} deleteSelectStore={this.props.deleteSelectStore}/>))
+                            (<StoresData key={store.Id} store={store} deleteSelectStore={this.props.deleteSelectStore} />))
                     }
                 </tbody>
 
