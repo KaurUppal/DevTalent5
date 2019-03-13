@@ -74,7 +74,7 @@ export default class CustomerModal extends React.Component {
 
                 <Modal.Footer>
                     <Button variant="primary" onClick={() => this.props.closeModal()}>Close</Button>
-                    <Button variant="success" onClick={() => this.props.saveCustomer(selectedCustomer)}>Save Changes</Button>
+                    <Button variant="success" onClick={() => this.props.saveCustomer()}>Save Changes</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         );

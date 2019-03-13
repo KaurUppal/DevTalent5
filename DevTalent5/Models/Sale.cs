@@ -19,7 +19,20 @@ namespace DevTalent5.Models
         public int CustomerId { get; set; }
         public int StoreId { get; set; }
         public System.DateTime DateSold { get; set; }
-    
+        public String FormatedDate
+        {
+            get
+            {
+                return this.DateSold.ToString("dd-MM-yyyy");
+            }
+            set
+            {
+
+            }
+        }
+        public String SName { get; set; }
+        public String PName { get; set; }
+        public String CName { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
         public virtual Store Store { get; set; }

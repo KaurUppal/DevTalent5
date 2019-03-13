@@ -11,7 +11,7 @@ export default class StoreModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-           
+
         };
         this.handleInputChange1 = this.handleInputChange1.bind(this);
 

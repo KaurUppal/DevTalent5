@@ -60,7 +60,8 @@ export default class Customer extends React.Component {
         });
     }
 
-    saveCustomer(customerTobeSaved) {
+    saveCustomer() {
+       var customerTobeSaved = this.state.selectedCustomer;
         //debugger;
         console.log(customerTobeSaved.Name);
         if ((customerTobeSaved.Name == "") || (customerTobeSaved.Address == "")) {
@@ -80,9 +81,21 @@ export default class Customer extends React.Component {
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(customerTobeSaved),
                 success: function (data, customerTobeSaved) {
-                    debugger;
-                   window.location.href = '/Customer/Customers';
-                }
+                    //debugger;
+                    console.log(data);
+                    //const { customerList }
+                    //const data1 = {
+                    //    Id: data.Response,
+                    //    Name: this.state.selectedCustomer.Name,
+                    //    Address: this.state.selectedCustomer.Address
+                    //}; 
+                    
+                    //this.setState({
+                    //    checkState: true,
+                    //   customerList: [{ ...this.state.customerList, data1}]
+                    //});
+                    window.location.href = '/Customer/Customers';
+                }.bind(this)
             });
         }
 

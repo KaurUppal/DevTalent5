@@ -133,6 +133,7 @@
     <Content Include="Scripts\react\dist\appSale_bundle.js" />
     <Content Include="Scripts\react\dist\appStore_bundle.js" />
     <Content Include="Scripts\react\dist\app_bundle.js" />
+    <Content Include="Scripts\react\Modal\Modal.js" />
     <Content Include="Scripts\react\product.js" />
     <Content Include="Scripts\react\product\appProduct.js" />
     <Content Include="Scripts\react\product\productModal.js" />
@@ -140,6 +141,7 @@
     <Content Include="Scripts\react\product\productTable.js" />
     <Content Include="Scripts\react\sales\appSales.js" />
     <Content Include="Scripts\react\sales\sale.js" />
+    <Content Include="Scripts\react\sales\saleModal.js" />
     <Content Include="Scripts\react\sales\saleTable.js" />
     <Content Include="Scripts\react\store\appStore.js" />
     <Content Include="Scripts\react\store\store.js" />

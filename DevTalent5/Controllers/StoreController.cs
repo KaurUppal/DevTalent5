@@ -31,18 +31,34 @@ namespace DevTalent5.Controllers
 
         // POST: Store/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult AddNewEdit(Store model)
         {
-            try
+            Store store = db.Stores.Where(x => x.Id == model.Id).FirstOrDefault();
+            if (store != null)
             {
-                // TODO: Add insert logic here
+                store.Name = model.Name;
+                store.Address = model.Address;
+                db.SaveChanges();
+                return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
 
-                return RedirectToAction("Index");
+                Store newStore = new Store();
+                newStore.Name = model.Name;
+                newStore.Address = model.Address;
+                try
+                {
+                    db.Stores.Add(newStore);
+                    db.SaveChanges();
+                    return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
+                }
+                catch
+                {
+                    return Json(new { Response = "unSuccess" }, JsonRequestBehavior.AllowGet);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            
         }
 
         // GET: Store/Edit/5

@@ -51,7 +51,10 @@ namespace DevTalent5.Controllers
                 {
                     db.Customers.Add(newCustomer);
                     db.SaveChanges();
-                    return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
+                    //var returnCustomer = Json
+                    int id = newCustomer.Id;
+                    //Console.Write("here is the id" + id);
+                    return Json(new { Response = id }, JsonRequestBehavior.AllowGet);
 
                 }
                 catch
