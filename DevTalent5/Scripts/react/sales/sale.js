@@ -45,6 +45,7 @@ export default class Sale extends React.Component {
         //console.log(this.state.saleData.CustomerId);
     };
     addNew() {
+        let currentDate = new Date;
         $.get("/Store/GetStoreList", data => {
             this.setState({
                 storeList: data,
@@ -60,7 +61,8 @@ export default class Sale extends React.Component {
 
         $.get("/Customer/GetCustomerList", (data) => {
             this.setState({
-                customerList: data
+                customerList: data,
+                //selectedSale: { DateSold: currentDate }
             })
         })
 
@@ -99,11 +101,13 @@ export default class Sale extends React.Component {
     }
 
     selectSale(sale) {
+       // let soldDate = sale.DateSold;
+       // let soldFormatedDate = new Date(soldDate);
         this.addNew();
         this.setState({
-            showModal: true,
-            selectedSale: sale
-        })
+            selectedSale: sale,
+            showModal: true
+        });
     }
 
     deleteSelectSale(sale) {
