@@ -9,21 +9,21 @@ class CustomersData extends React.Component {
         super(props);
         this.state = {
 
-        };    
+        };
     };
 
 
     render() {
         const customer = this.props.customer;
         return (
-            
+
             <tr>
                 <td>{customer.Name}</td>
                 <td>{customer.Address}</td>
                 <td><Button variant="danger" name="delete" customer={customer} onClick={() => this.props.deleteSelectCustomer(customer)} >Delete</Button></td>
                 <td><Button name="edit" customer={customer} onClick={() => this.props.selectCustomer(customer)}>Edit</Button></td>
-                    
-                </tr>
+
+            </tr>
 
         );
 
@@ -57,13 +57,10 @@ export default class CustomersDataTable extends React.Component {
                             (<CustomersData key={customer.Id} customer={customer} deleteSelectCustomer={this.props.deleteSelectCustomer} selectCustomer={this.props.selectCustomer} />))
                     }
                 </tbody>
-                
+
             </Table>
 
         );
 
     }
 }
-
-
-

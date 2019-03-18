@@ -1,6 +1,7 @@
 ﻿module.exports = {
     mode: 'development',
     context: __dirname,
+
     //entry: "./index.jsx",
     //output: {
     //    path: __dirname + "/dist",
@@ -29,6 +30,8 @@
                     presets: ['@babel/preset-env', '@babel/preset-react']
                 }
             }
-        }]
+        }],
+
+       
     }
 }

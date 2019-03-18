@@ -23,7 +23,7 @@ export default class StoreModal extends React.Component {
     handleInputChange1(event, type, value) {
 
         if (type == 'name') {
-            debugger;
+            //debugger;
             //console.log("customer Name:" + JSON.stringify(this.props.selectedCustomer));
             const target = event.target;
             const value1 = target.value;
@@ -35,7 +35,7 @@ export default class StoreModal extends React.Component {
             this.props.selectedStore.Address = value1;
         }
         debugger;
-        this.props.selectStore(this.props.selectedStore);
+        //this.props.selectStore(this.props.selectedStore);
 
     }
 

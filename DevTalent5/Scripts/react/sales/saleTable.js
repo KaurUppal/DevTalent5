@@ -22,8 +22,7 @@ class SaleData extends React.Component{
                 <td>{sale.SName}</td>
                 <td>{sale.FormatedDate}</td>
                 <td><Button variant="danger" name="delete" onClick={() => this.props.deleteSelectSale(sale)}>Delete</Button></td>
-                <td><Button variant="warning" name="edit
-">Edit</Button></td>
+                <td><Button variant="warning" name="edit" onClick={() => this.props.selectSale(sale)}>Edit</Button></td>
             </tr>
 
             );
@@ -53,7 +52,8 @@ export default class SaleTableList extends React.Component {
                 </thead>
                 <tbody>
                     {saleData.map(sale =>
-                        <SaleData key={sale.Id} sale={sale} deleteSelectSale={this.props.deleteSelectSale} />)}
+                        <SaleData key={sale.Id} sale={sale} deleteSelectSale={this.props.deleteSelectSale}
+                            selectSale={this.props.selectSale} />)}
                 </tbody>
             </Table>
             );

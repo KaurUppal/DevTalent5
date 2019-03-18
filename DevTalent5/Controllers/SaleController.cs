@@ -49,9 +49,31 @@ namespace DevTalent5.Controllers
 
 
         // GET: Sales/Create
-        public ActionResult Create()
+        public ActionResult AddNewEdit(Sale model)
         {
-            return View();
+            Sale sale = db.Sales.Find(model.Id);
+            if(sale != null)
+            {
+                sale.CustomerId = model.CustomerId;
+                sale.ProductId = model.ProductId;
+                sale.StoreId = model.StoreId;
+                sale.DateSold = model.DateSold;
+                db.SaveChanges();
+                return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                try
+                {
+                    db.Sales.Add(model);
+                    db.SaveChanges();
+                    return Json(new { Response = "success" }, JsonRequestBehavior.AllowGet);
+                }
+                catch
+                {
+                    return Json(new { Response = "unsuccess" }, JsonRequestBehavior.AllowGet);
+                }
+            }
         }
 
 

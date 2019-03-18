@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import CustomerDataTable from './customerTable.js'
+import CustomerDataTable from './customerTable.js';
 import CustomerModal from './customerModal.js';
 //import { Button, Header, Image, Modal, Form, Input } from 'semantic-ui-react';
 import ModalDialog from 'react-bootstrap/ModalDialog'
@@ -28,6 +28,7 @@ export default class Customer extends React.Component {
 
     componentDidMount() {
         $.get("/Customer/GetCustomerList", (data) => {
+            console.log()
             this.setState({
                 customerList: data
             });
@@ -81,7 +82,7 @@ export default class Customer extends React.Component {
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(customerTobeSaved),
                 success: function (data, customerTobeSaved) {
-                    //debugger;
+                    debugger;
                     console.log(data);
                     //const { customerList }
                     //const data1 = {
@@ -96,6 +97,8 @@ export default class Customer extends React.Component {
                     //});
                     window.location.href = '/Customer/Customers';
                 }.bind(this)
+                
+                
             });
         }
 
@@ -103,14 +106,15 @@ export default class Customer extends React.Component {
     }
 
     deleteSelectCustomer(customer) {
-        //debugger;
+        debugger;
         $.ajax({
             type: 'POST',
             url: '/Customer/DeleteCustomer/' + customer.Id,
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(customer),
             success: function (customer) {
-                console.log("success");
+                debugger;
+                //console.log("success");
                 window.location.href = '/Customer/Customers';
             }
         });

@@ -1,11 +1,10 @@
-﻿import React, {Component} from 'react';
+﻿import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 //import ModalHeader from 'react-bootstrap/ModalHeader';
-import ModalDialog from 'react-bootstrap/ModalDialog'
-import { log } from 'util';
+//import './StyleSheet.css';
 
 
 export default class CustomerModal extends React.Component {
@@ -17,32 +16,33 @@ export default class CustomerModal extends React.Component {
 
         };
         this.handleInputChange1 = this.handleInputChange1.bind(this);
-       
-    };
 
-    
-    
+    };
+   
+
+
+
 
     handleInputChange1(event, type, value) {
-       
+
         debugger;
         console.log("in change");
-    if (type == 'name') {
-        //console.log("customer Name:" + JSON.stringify(this.props.selectedCustomer));
-        const target = event.target;
-        const value1 = target.value;
-        this.props.selectedCustomer.Name = value1
-        console.log("customer:" + this.props.selectedCustomer);
-    }
-    else {
-        const target = event.target;
-        const value1 = target.value;
-        this.props.selectedCustomer.Address = value1;
-    }
+        if (type == 'name') {
+            //console.log("customer Name:" + JSON.stringify(this.props.selectedCustomer));
+            const target = event.target;
+            const value1 = target.value;
+            this.props.selectedCustomer.Name = value1
+            console.log("customer:" + this.props.selectedCustomer);
+        }
+        else {
+            const target = event.target;
+            const value1 = target.value;
+            this.props.selectedCustomer.Address = value1;
+        }
 
-    this.props.selectCustomer(this.props.selectedCustomer);
+        this.props.selectCustomer(this.props.selectedCustomer);
 
-}
+    }
 
     render() {
         //debugger;
@@ -67,8 +67,8 @@ export default class CustomerModal extends React.Component {
                             <Form.Label>Address</Form.Label>
                             <Form.Control placeholder="Customer Address" value={selectedCustomer.Address} id="address" onChange={({ value }) => this.handleInputChange1(event, "address", value)} />
                         </Form.Group>
-                            
-                       
+
+
                     </Form>
                 </Modal.Body>
 
