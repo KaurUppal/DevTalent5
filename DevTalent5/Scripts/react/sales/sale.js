@@ -4,16 +4,22 @@ import Button from 'react-bootstrap/Button';
 import SaleTableList from './saleTable';
 import SaleModal from './saleModal';
 import Alert from 'react-bootstrap/Alert';
+import { withRouter } from 'react-router-dom';
+
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 export default class Sale extends React.Component {
     constructor(props) {
         super(props);
+        //const contextTypes = { router: React.PropTypes.object }
         this.state = {
+           // contextTypes: { router: React.PropTypes.object },
             selectedSale: {
                 "CustomerId": "",
                 "StoreId": "",
                 "ProductId": "",
-                "DateSold":""
+                "DateSold": "",
+                "FormatedDate":""
             },
             saleData: [],
             customerList: [],
@@ -27,6 +33,8 @@ export default class Sale extends React.Component {
         this.save = this.save.bind(this);
         this.selectSale = this.selectSale.bind(this);
         this.updateSale = this.updateSale.bind(this)
+        this.setOptions = this.setOptions.bind(this);
+        //this.test = this.test.bind(this);
         
     };
     updateSale(sale) {
@@ -44,12 +52,10 @@ export default class Sale extends React.Component {
         });
         //console.log(this.state.saleData.CustomerId);
     };
-    addNew() {
-        let currentDate = new Date;
+    setOptions() {
         $.get("/Store/GetStoreList", data => {
             this.setState({
-                storeList: data,
-                showModal: true
+                storeList: data
             })
         });
 
@@ -64,6 +70,23 @@ export default class Sale extends React.Component {
                 customerList: data,
                 //selectedSale: { DateSold: currentDate }
             })
+        })
+    }
+    addNew() {
+        //console.log(this.props.location.pathname);
+        //var currentRouteName = this.state.contextTypes.router.getCurrentPathname();
+        //this.context.router.transitionTo(currentRouteName, { lang: 'de' });
+       
+        let currentDate = new Date;
+        this.setOptions();
+        this.setState({
+            showModal: true,
+            selectedSale: {
+                "CustomerId": "",
+                "StoreId": "",
+                "ProductId": "",
+                "DateSold": currentDate
+            }
         })
 
     };
@@ -100,49 +123,66 @@ export default class Sale extends React.Component {
         })
     }
 
+    parseJsonDate(jsonDateString) {
+    return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+    }
+
     selectSale(sale) {
-       // let soldDate = sale.DateSold;
-       // let soldFormatedDate = new Date(soldDate);
-        this.addNew();
+        let soldDate = sale.DateSold;
+        console.log(soldDate);
+        let soldFormatedDate = this.parseJsonDate(soldDate);
+        this.setOptions();
         this.setState({
             selectedSale: sale,
+            //selectedSale:{ DateSold: soldFormatedDate },    
             showModal: true
         });
     }
 
     deleteSelectSale(sale) {
+        //debugger;
+        console.log("SaleId is " + sale.Id);
         $.ajax({
             type: 'POST',
             url: '/Sale/Delete/' + sale.Id,
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(sale),
             success: function (data) {
-                //debugger;
+                console.log(data);
                 console.log(data);
                 window.location.href = '/Sale/Sales';
             }
         })
 
     };
+    //test() {
+    //    console.log("here we are");
+    //    return (
+
+    //        <p>this is</p>
+               
+    //    );
+        
+    
 
     render() {
-        //debugger;
-        console.log("customer Id: " + this.state.selectedSale.CustomerId);
+       
         return (
             <div>
-
-                <Button color='red' onClick={() =>  this.addNew() }>Add Sale</Button>
+                <Button color='red' type="button" className="btn btn-primary" data-toggle="modal" data-target="#addNewModal" onClick={() => this.addNew()}>Add Sale</Button>
+           
                 <SaleTableList saleData={this.state.saleData} deleteSelectSale={this.deleteSelectSale}
                     selectSale={this.selectSale}
+                    saleData={this.state.saleData}
                 />
-                {this.state.showModal && <SaleModal closeModal={this.closeModal} showModal={this.state.showModal}
-                    customerList={this.state.customerList} selectedSale={this.state.selectedSale}
-                    productList={this.state.productList}
-                    storeList={this.state.storeList}
-                    selectedSale={this.state.selectedSale}
-                    save={this.save}
-                    updateSale={this.updateSale}
-                />}
+                <SaleModal
+                customerList={this.state.customerList} selectedSale={this.state.selectedSale}
+                productList={this.state.productList}
+                storeList={this.state.storeList}
+                selectedSale={this.state.selectedSale}
+                save={this.save}
+                updateSale={this.updateSale}
+                />
             </div>
             );
     }

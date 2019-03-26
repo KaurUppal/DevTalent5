@@ -34,8 +34,8 @@ export default class StoreModal extends React.Component {
             const value1 = target.value;
             this.props.selectedStore.Address = value1;
         }
-        debugger;
-        //this.props.selectStore(this.props.selectedStore);
+       
+        this.props.selectStore(this.props.selectedStore);
 
     }
 

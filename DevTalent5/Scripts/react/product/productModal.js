@@ -32,10 +32,10 @@ export default class ProductModal extends React.Component {
             const target = event.target;
             const value1 = target.value;
             this.props.selectedProduct.Price = value1;
+            
         }
 
         this.props.selectProduct(this.props.selectedProduct);
-
     }
 
     render() {
@@ -53,7 +53,7 @@ export default class ProductModal extends React.Component {
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
                             <Form.Control placeholder="Product Name" value={selectedProduct.Name} id="name" onChange={({ value }) => this.handleInputChange1(event, "name", value)} />
-                            <Form.Label>Address</Form.Label>
+                            <Form.Label>Price</Form.Label>
                             <Form.Control placeholder="Product Price" value={selectedProduct.Price} id="price" onChange={({ value }) => this.handleInputChange1(event, "price", value)} />
                         </Form.Group>
 

@@ -139,6 +139,7 @@
     <Content Include="Scripts\react\product\productModal.js" />
     <Content Include="Scripts\react\product\product.js" />
     <Content Include="Scripts\react\product\productTable.js" />
+    <Content Include="Scripts\react\return.js" />
     <Content Include="Scripts\react\sales\appSales.js" />
     <Content Include="Scripts\react\sales\sale.js" />
     <Content Include="Scripts\react\sales\saleModal.js" />

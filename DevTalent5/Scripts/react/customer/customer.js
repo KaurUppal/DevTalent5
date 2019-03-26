@@ -16,7 +16,7 @@ export default class Customer extends React.Component {
             selectedCustomer: {"Name" : "",
                                "Address" :"" 
             },
-            showModal: false
+            showModal: false,
         };
 
         this.deleteSelectCustomer = this.deleteSelectCustomer.bind(this);

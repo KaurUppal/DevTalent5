@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-//import style from './Content/bootstrap.css';
+
 
 
 
@@ -60,8 +59,8 @@ export default class SaleModal extends React.Component {
     }
 
     render() {
-        //let selectedStore = this.props.selectedStore;
-        let showModal = this.props.showModal.toString();
+        let selectedStore = this.props.selectedStore;
+        //let showModal = this.props.showModal.toString();
         
         let optionCustomer = this.props.customerList.map(v => (
             
@@ -70,45 +69,49 @@ export default class SaleModal extends React.Component {
             (<option key={v.Id} value={v.Id}>{v.Name}</option>));
         let optionProduct = this.props.productList.map(v =>
             (<option key={v.Id} value={v.Id}>{v.Name}</option>));
+        let selectedSale = this.props.selectedSale;
   
-          return (
-            <Modal.Dialog show={showModal}>
-                <Modal.Header closeButton onClick={() => this.props.closeModal()}>
-                    <Modal.Title>Sale</Modal.Title>
-                </Modal.Header>
+        return (
+            <div className="modal fade" id="addNewModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLongTitle">Sale</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <Form>
+                                <Form.Group>
+                                    <Form.Label>Customer</Form.Label>
+                                    <Form.Control title="Customer" as="select" id="select-customer" value={selectedSale.CustomerId} onChange={({ value }) => this.handleInputChange1(event, "select-customer", value)}>
+                                        <option key="0">Customer</option>
+                                        {optionCustomer}</Form.Control>
+                                    <Form.Label>Store</Form.Label>
+                                    <Form.Control as="select" id="select-store" value={selectedSale.StoreId} onChange={(value) => this.handleInputChange1(event, "select-store", value)}>
+                                        <option>Store</option>
+                                        {optionStore}
+                                    </Form.Control>
 
-                <Modal.Body>
-                    <Form>
-                        <Form.Group>
-                              <Form.Label>Customer</Form.Label>
-                              <Form.Control title="Customer" as="select" id="select-customer" value={this.props.selectedSale.CustomerId} onChange={({ value }) => this.handleInputChange1(event, "select-customer", value)}>
-                                  <option key="0">Customer</option>
-                                  {optionCustomer}</Form.Control>
-                              <Form.Label>Store</Form.Label>
-                              <Form.Control as="select" id="select-store"  value={this.props.selectedSale.StoreId} onChange={(value) => this.handleInputChange1(event, "select-store", value)}>
-                                  <option>Store</option>
-                                  {optionStore}
-                              </Form.Control>
+                                    <Form.Label>Product</Form.Label>
+                                    <Form.Control as="select" id="select-product" value={selectedSale.ProductId} onChange={({ value }) => this.handleInputChange1(event, "select-product", value)}>
+                                        <option>Product</option>
+                                        {optionProduct}
+                                    </Form.Control>
+                                    <Form.Label>Date</Form.Label>
+                                    <Form.Control id="date" placeholder="dd-mm-yyyy" value={selectedSale.DateSold} onChange={(value) => this.handleInputChange1(event, "date", value)}></Form.Control>
+                                </Form.Group>
+                            </Form>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.props.save(this.props.selectedSale)} data-dismiss="modal">Save changes</button>
+                        </div>
 
-                              <Form.Label>Product</Form.Label>
-                              <Form.Control as="select" id="select-product" value={this.props.selectedSale.ProductId} onChange={({ value }) => this.handleInputChange1(event, "select-product", value)}>
-                                  <option>Product</option>
-                                  {optionProduct}
-                              </Form.Control>
-                              <Form.Label>Date</Form.Label>
-                              <Form.Control id="date" placeholder="dd-mm-yyyy" value={this.props.selectedSale.DateSold} onChange={(value) => this.handleInputChange1(event, "date", value)}></Form.Control>
-
-                        </Form.Group>
-
-
-                    </Form>
-                </Modal.Body>
-
-                <Modal.Footer>
-                      <Button variant="primary" onClick={() => this.props.closeModal()}>Close</Button>
-                      <Button variant="success" onClick={() => this.props.save(this.props.selectedSale)}>Save Changes</Button>
-                </Modal.Footer>
-            </Modal.Dialog>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
